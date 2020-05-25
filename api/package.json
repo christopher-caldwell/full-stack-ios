@@ -1,8 +1,24 @@
 {
+  "name": "api",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "mocha"
+  },
+  "private": true,
   "devDependencies": {
+    "eslint": "^7.1.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-import-resolver-webpack": "^0.12.1",
+    "eslint-plugin-import": "^2.20.2",
     "serverless": "^1.71.3",
+    "serverless-dynamodb-local": "^0.2.39",
     "serverless-offline": "^6.1.7",
     "serverless-webpack": "^5.3.2",
-    "webpack": "^4.43.0"
-  }
+    "webpack": "^4.43.0",
+    "webpack-merge": "^4.2.2"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
