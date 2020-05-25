@@ -1,0 +1,20 @@
+{
+	"name": "register-user-lambda",
+	"version": "1.0.0",
+	"description": "Lambda for users to register",
+	"main": "index.js",
+	"keywords": [
+		"create",
+		"user"
+	],
+	"author": "caldwell619",
+	"license": "ISC",
+	"devDependencies": {
+		"aws-sdk": "^2.624.0"
+	},
+	"dependencies": {
+		"bcrypt": "^3.0.6",
+		"jsonwebtoken": "^8.5.1",
+		"simple-lambda-actions": "^1.2.58"
+	}
+}

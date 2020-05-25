@@ -1,0 +1,15 @@
+{
+	"name": "oauth-facebook",
+	"version": "1.0.0",
+	"description": "Allowing login through google",
+	"main": "index.js",
+	"keywords": [
+		"login",
+		"google"
+	],
+	"author": "caldwell619",
+	"license": "ISC",
+	"dependencies": {
+		"axios": "^0.19.2"
+	}
+}
