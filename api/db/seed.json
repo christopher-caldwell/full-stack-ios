@@ -1,0 +1,1 @@
+{"exam-tips-db":[{"PutRequest":{"Item":{"id":{"S":"test"},"resourceDescription":{"S":"user"},"password":{"S":"$2a$10$xAtD3Ft.SnSCfADTMWmnuuCIWf2U4L3EreQsEaiek6B3chvSHf9jG"}}}}]}

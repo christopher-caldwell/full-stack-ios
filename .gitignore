@@ -1,8 +1,6 @@
 .DS_Store
 node_modules
 **/node_modules
-**/dist
-**/build
 
 # local env files
 .env.local
@@ -20,3 +18,9 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+
+# Build Output
+.webpack/
+.serverless/
+**/dist
+**/build
