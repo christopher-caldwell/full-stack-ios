@@ -1,12 +1,13 @@
-const { putItem } = require('simple-lambda-actions/dist/dynamo/')
+const putItem = require('common-aws-actions/dist/dynamo/lib/putItem')
+const { genSalt, hash } = require('bcryptjs/dist/bcrypt.min')
 
 const TableName = process.env.TABLE_NAME
 const partitionKey = process.env.TABLE_PARTITION_KEY
 const rangeKey = process.env.TABLE_RANGE_KEY
 
-const role = 'full-user'
-
-const constructWriteParams = (emailAddress, hashedPassword, userInformation) => {
+const constructWriteParams = async (emailAddress, password, userInformation, role) => {
+	const saltRounds = await genSalt(10)
+	const hashedPassword = await hash(password, saltRounds)
 	const params = {
 		[partitionKey]: emailAddress,
 		[rangeKey]: 'user',
@@ -18,9 +19,9 @@ const constructWriteParams = (emailAddress, hashedPassword, userInformation) => 
 	return params
 }
 
-const writeUser = async (emailAddress, hashedPassword, userInformation) => {
-	const writeParams = constructWriteParams(emailAddress, hashedPassword, userInformation)
-	await putItem(TableName, writeParams)
+const writeUser = async (emailAddress, password, userInformation, role) => {
+	const writeParams = await constructWriteParams(emailAddress, password, userInformation, role)
+	await putItem(TableName, writeParams, true)
 	return writeParams
 }
 

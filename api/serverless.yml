@@ -28,11 +28,13 @@ provider:
     lambda: true
   environment:
    STAGE: ${env:STAGE}
-   SECRET_NAME: ${env:SECRET_NAME}
-   SIGNING_KEY_NAME: ${env:SIGNING_KEY_NAME}
+   SECRET_ID: ${env:SECRET_ID}
+   MOCK_SIGNING_KEY: ${env:MOCK_SIGNING_KEY}
+   TARGET_SECRET_KEY_PROPERTY: ${env:TARGET_SECRET_KEY_PROPERTY}
    TOKEN_DURATION: ${env:TOKEN_DURATION}
    TABLE_NAME: ${env:TABLE_NAME}
    TABLE_PARTITION_KEY: ${env:TABLE_PARTITION_KEY}
+   TABLE_RANGE_KEY: ${env:TABLE_RANGE_KEY}
    CORS_URL: ${env:CORS_URL}
 
 plugins:
@@ -56,6 +58,16 @@ functions:
     events:
       - http:
           path: user/login
+          method: post
+
+  Register:
+    handler: src/user/register/standard/index.handler
+    name: Register-${env:STAGE}
+    description: Register with username and password
+    role: RegisterRole
+    events:
+      - http:
+          path: user/register
           method: post
 
 
@@ -82,7 +94,7 @@ resources:
                 - ':'
                 - !Ref AWS::AccountId
                 - :secret/
-                - ${env:SECRET_NAME}
+                - ${env:SECRET_ID}
 
     LoginUserRole:
       DependsOn: SecretsAccessPolicy

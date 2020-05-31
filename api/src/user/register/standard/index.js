@@ -1,22 +1,21 @@
-const bcyrpt = require('bcrypt')
-const Responder= require('simple-lambda-actions/dist/util/responseHandler')
-const { bodyParser } = require('simple-lambda-actions/dist/util/formatter')
+const Responder = require('common-aws-actions/dist/util/Responder')
+const { bodyParser } = require('common-aws-actions/dist/util/formatter')
+
 const putUser = require('./lib/putUser')
 const generateToken = require('./lib/secretsManagerSetup')
 
-const role = 'full-user'
-const numberOfSaltRounds = 10
 const corsUrl = process.env.CORS_URL
+const ResponseHandler = new Responder(corsUrl, 'post')
+const role = 'partialUser'
 
 exports.handler = async event => {
-	const ResponseHandler = new Responder(corsUrl, event.httpMethod)
 	try {
 		const { emailAddress, password, userInformation } = bodyParser(event.body)
-		const hashedPassword = await bcyrpt.hash(password, numberOfSaltRounds)
+		console.log('emailAddress %s password %s userInfo %s', emailAddress, password, userInformation)
 		const tokenParams = { id: emailAddress, role }
 		const [ token, user ] = await Promise.all([
 			generateToken(tokenParams),
-			putUser(emailAddress, hashedPassword, userInformation)
+			putUser(emailAddress, password, userInformation, role)
 		])
 		delete user.password
 		return ResponseHandler.respond({ userInformation: user, token }, 200)

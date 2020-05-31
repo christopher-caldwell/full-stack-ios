@@ -22,17 +22,28 @@
 		v-row.line-row(justify='center')
 			v-col(cols='10')
 				LineThroughText(text='or')
-		v-row(justify='center')
-			v-col(cols='10' align='center')
-				v-text-field(outlined label='Email' :color="amazonOrange" :disabled="isLoading")
-			v-col(cols='10' align='center')
-				v-text-field(outlined label='Password' :color="amazonOrange" :disabled="isLoading")
-		v-row
-			v-col(align='center')
-				router-link(to='/forgot-password') Forgot your password?
-		v-row
-			v-col(align='center')
-				v-btn(:color="amazonOrange" :loading="isLoading") Login
+		form
+			v-row(justify='center')
+				v-col(cols='10' align='center')
+					v-text-field(
+						outlined label='Email' 
+						:color="amazonOrange" 
+						:disabled="isLoading"
+						v-model="emailAddress"
+					)
+				v-col(cols='10' align='center')
+					v-text-field(
+						outlined label='Password' 
+						:color="amazonOrange" 
+						:disabled="isLoading"
+						v-model="password"
+					)
+			v-row
+				v-col(align='center')
+					router-link(to='/forgot-password') Forgot your password?
+			v-row
+				v-col(align='center')
+					v-btn(:color="amazonOrange" :loading="isLoading" @submit="login") Login
 		
 </template>
 
@@ -40,6 +51,7 @@
 import { amazonOrange } from '@/data/constants'
 import LineThroughText from '@/components/util/LineThroughText.vue'
 import GoogleOauth from '@/components/oauth/Google.vue'
+import { mapActions } from 'vuex'
 export default {
 	name: 'Login',
 	components: {
@@ -48,6 +60,8 @@ export default {
 	},
 	data(){
 		return {
+			emailAddress: '',
+			password: '',
 			amazonOrange,
 			isLoading: false
 		}
@@ -58,6 +72,20 @@ export default {
 				? 'dark'
 				: 'light'
 		},
+	},
+	methods: {
+		...mapActions('user', ['standardLogin']),
+		async login(){
+			const loginPayload = {
+				emailAddress: this.emailAddress,
+				password: this.password
+			}
+			try {
+				await this.standardLogin(loginPayload)
+			} catch(error){
+				console.error(error)
+			}
+		}
 	}
 }
 </script>

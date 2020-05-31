@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { amazonOrange, supportedLocales } from '@/data/constants'
+import { amazonOrange } from '@/data/constants'
 import LineThroughText from '@/components/util/LineThroughText.vue'
 import GoogleOauth from '@/components/oauth/Google.vue'
 export default {
@@ -42,8 +42,6 @@ export default {
 	data(){
 		return {
 			amazonOrange,
-			supportedLocales,
-			chosenLocale: 'English',
 			isLoading: false
 		}
 	},

@@ -1,21 +1,19 @@
-const Responder = require('simple-lambda-actions/dist/util/responseHandler')
-const { bodyParser } = require('simple-lambda-actions/dist/util/formatter')
+const Responder = require('common-aws-actions/dist/util/Responder')
+const { bodyParser } = require('common-aws-actions/dist/util/formatter')
 
 const verifyPassword = require('./lib/checkPassword')
 const generateToken = require('./lib/secretsManagerSetup')
 
 const corsUrl = process.env.CORS_URL
-
 const ResponseHandler = new Responder(corsUrl, 'post')
 
 exports.handler = async event => {
 	try {
-		const { username, password } = bodyParser(event.body)
-		console.log('username', username)
-		const tokenParams = { id: '123', role: '123' }
+		const { emailAddress, password } = bodyParser(event.body)
 		
-		const userInformation = await verifyPassword(username, password)
-		await	generateToken(tokenParams)
+		const userInformation = await verifyPassword(emailAddress, password)
+		const tokenParams = { id: emailAddress, role: userInformation.role }
+		const token = await	generateToken(tokenParams)
 		
 		return ResponseHandler.respond({ userInformation, token }, 200)
 	} catch(error){

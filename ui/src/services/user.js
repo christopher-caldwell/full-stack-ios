@@ -8,8 +8,9 @@ export default {
       identifier, plainTextPassword, firstName, lastName
     })).data
   },
-  async login({ identifier, plainTextPassword }) {
-    return (await client.post('/user/login', { identifier, plainTextPassword })).data
+  async login({ emailAddress, password }) {
+		const { data } = await client.post('/user/login', { emailAddress, password })
+		return data
 	},
 	async googleOauthRegister(codeToSend){
 		const { data } = await client.post('/register/oauth/google', { idToken: codeToSend })

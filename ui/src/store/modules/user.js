@@ -40,6 +40,11 @@ export default {
 				dispatch('session/beginNewSession', token, { root: true })
 			commit('UPDATE_USER', userInformation)
 		},
+		async standardLogin({ commit, dispatch }, payload){
+			const { userInformation, token } = await service.login(payload)
+			dispatch('session/beginNewSession', token, { root: true })
+			commit('UPDATE_USER', userInformation)
+		},
 		restoreUserToStore({ commit }){
 			const prevUser = getItemFromLocalStorage('user')
 			if(prevUser){
