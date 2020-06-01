@@ -23,11 +23,10 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import NavMenuItem from '@/components/header/NavMenuItem.vue'
 import Avatar from '@/components/oauth/Avatar.vue'
-import { routes } from '@/router/routes'
 import { amazonOrange } from '@/data/constants'
-import { mapGetters } from 'vuex'
 export default {
 	components: {
 		NavMenuItem,
@@ -35,7 +34,6 @@ export default {
 	},
 	data() {
 		return {
-			routes,
 			drawer: false,
 			isDarkMode: false,
 			amazonOrange

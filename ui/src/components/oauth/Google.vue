@@ -29,21 +29,26 @@ export default {
 		}
 	},
 	created(){
-		let googleApiScript = document.createElement('script');    
-		googleApiScript.setAttribute('src','https://apis.google.com/js/client:platform.js');
-		googleApiScript.setAttribute('async');
-		googleApiScript.setAttribute('defer');
-		document.head.appendChild(googleApiScript);
+		let googleApiScript = document.createElement('script')
+		googleApiScript.setAttribute('src','https://apis.google.com/js/client:platform.js')
+		googleApiScript.setAttribute('async')
+		googleApiScript.setAttribute('defer')
+		document.head.appendChild(googleApiScript)
 	},
 	async mounted(){
+		console.log('window', window)
 		const client_id = process.env.VUE_APP_GOOGLE_OAUTH_CLIENT_ID
 		/*eslint-disable */
-		await gapi.load('auth2')
-		const  initializedApi = gapi.auth2.init({
-				client_id
-			})
-		/*eslint-enable */
-		this.googleApi = initializedApi
+		try {
+			await gapi.load('auth2')
+			const  initializedApi = gapi.auth2.init({
+					client_id
+				})
+			/*eslint-enable */
+			this.googleApi = initializedApi
+		} catch(error){
+			console.error('Google API init error', error)
+		}
 	},
 	methods: {
 		...mapActions('user', ['googleOauth']),

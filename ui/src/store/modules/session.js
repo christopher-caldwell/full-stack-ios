@@ -24,7 +24,7 @@ export default {
     allowableRoutes(state, getters, rootState) {
       const isSessionValid = state.expiredDate > Date.now()
 			if (state.isAuthenticated && isSessionValid && rootState.user.role === 'admin') return regularAdminRoutes
-			if (state.isAuthenticated && isSessionValid && rootState.user.role === 'full-user') return authenticatedRoutes
+			if (state.isAuthenticated && isSessionValid && rootState.user.role === 'partialUser') return authenticatedRoutes
 			return visitorRoutes
     },
   },

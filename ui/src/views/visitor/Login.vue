@@ -22,7 +22,7 @@
 		v-row.line-row(justify='center')
 			v-col(cols='10')
 				LineThroughText(text='or')
-		form
+		form( @submit.prevent="login" )
 			v-row(justify='center')
 				v-col(cols='10' align='center')
 					v-text-field(
@@ -43,7 +43,12 @@
 					router-link(to='/forgot-password') Forgot your password?
 			v-row
 				v-col(align='center')
-					v-btn(:color="amazonOrange" :loading="isLoading" @submit="login") Login
+					v-btn(
+						:color="amazonOrange" 
+						:loading="isLoading" 
+						@click="login"
+						type='submit'
+					) Login
 		
 </template>
 
@@ -76,14 +81,18 @@ export default {
 	methods: {
 		...mapActions('user', ['standardLogin']),
 		async login(){
+			this.isLoading = true
 			const loginPayload = {
 				emailAddress: this.emailAddress,
 				password: this.password
 			}
 			try {
 				await this.standardLogin(loginPayload)
+				this.$router.push('/user/home')
 			} catch(error){
 				console.error(error)
+			} finally {
+				this.isLoading = false
 			}
 		}
 	}

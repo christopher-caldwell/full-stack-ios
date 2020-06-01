@@ -28,15 +28,6 @@
 				v-text-field(outlined label='Given Name' :color="amazonOrange" :disabled="isLoading" v-model="givenName")
 			v-col(cols='10' align='center')
 				v-text-field(outlined label='Family Name' :color="amazonOrange" :disabled="isLoading" v-model="familyName")
-			v-col(cols='10' align='center')
-				v-autocomplete(
-					:disabled="isLoading"
-					v-model="chosenLocale"
-					:items="supportedLocales"
-					label='Locale'
-					:color="amazonOrange"
-					outlined
-				)
 		v-row
 			v-col(align='center')
 				v-btn(:color="amazonOrange" :loading="isLoading" @click="beginSignUp") Sign Up
@@ -44,7 +35,7 @@
 </template>
 
 <script>
-import { amazonOrange, supportedLocales } from '@/data/constants'
+import { amazonOrange } from '@/data/constants'
 import { mapActions } from 'vuex'
 export default {
 	name: 'RegisterStandard',	
@@ -54,9 +45,7 @@ export default {
 			password: null,
 			givenName: null,
 			familyName: null,
-			chosenLocale: 'English',
 			amazonOrange,
-			supportedLocales,
 			isLoading: false,
 			showPassword: false,
 		}
@@ -70,7 +59,6 @@ export default {
 				password: this.password,
 				givenName: this.givenName,
 				familyName: this.familyName,
-				chosenLocale: this.chosenLocale,
 			}
 			try {
 				await this.registerUser(params)
