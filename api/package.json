@@ -2,7 +2,11 @@
   "name": "api",
   "version": "1.0.0",
   "scripts": {
-    "start": "source .env.local && serverless offline --httpPort 5000"
+		"start": "source .env.local && serverless offline --httpPort 5000",
+		"start:db": "source .env.local && cd db && docker-compose up",
+		"stop:db": "source .env.local && cd db && docker-compose down",
+		"create-table": "source .env.local && sh db/scripts/create-table.sh",
+		"seed-db": "source .env.local && sh db/scripts/seed.sh"
   },
   "private": true,
   "devDependencies": {
