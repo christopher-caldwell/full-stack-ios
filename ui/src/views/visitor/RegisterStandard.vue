@@ -10,27 +10,33 @@
 		v-row
 			v-col
 				v-divider
-		v-row(justify='center')
-			v-col(cols='10' align='center')
-				v-text-field(outlined label='Email' :color="amazonOrange" :disabled="isLoading" v-model="emailAddress")
-			v-col(cols='10' align='center')
-				v-text-field(
-						outlined
-						:color="amazonOrange"
-						v-model="password"
-						:append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-						:type="showPassword ? 'text' : 'password'"
-						label="Password"
-						counter
-						@click:append="showPassword = !showPassword"
-				)
-			v-col(cols='10' align='center')
-				v-text-field(outlined label='Given Name' :color="amazonOrange" :disabled="isLoading" v-model="givenName")
-			v-col(cols='10' align='center')
-				v-text-field(outlined label='Family Name' :color="amazonOrange" :disabled="isLoading" v-model="familyName")
-		v-row
-			v-col(align='center')
-				v-btn(:color="amazonOrange" :loading="isLoading" @click="beginSignUp") Sign Up
+		form(@submit.prevent="beginSignUp")
+			v-row(justify='center')
+				v-col(cols='10' align='center')
+					v-text-field(outlined label='Email' :color="amazonOrange" :disabled="isLoading" v-model="emailAddress")
+				v-col(cols='10' align='center')
+					v-text-field(
+							outlined
+							:color="amazonOrange"
+							v-model="password"
+							:append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+							:type="showPassword ? 'text' : 'password'"
+							label="Password"
+							counter
+							@click:append="showPassword = !showPassword"
+					)
+				v-col(cols='10' align='center')
+					v-text-field(outlined label='Given Name' :color="amazonOrange" :disabled="isLoading" v-model="givenName")
+				v-col(cols='10' align='center')
+					v-text-field(outlined label='Family Name' :color="amazonOrange" :disabled="isLoading" v-model="familyName")
+			v-row
+				v-col(align='center')
+					v-btn(
+						:color="amazonOrange" 
+						:loading="isLoading" 
+						@click="beginSignUp"
+						type='submit'
+					) Sign Up
 		
 </template>
 
@@ -57,8 +63,10 @@ export default {
 			const params = {
 				emailAddress: this.emailAddress,
 				password: this.password,
-				givenName: this.givenName,
-				familyName: this.familyName,
+				userInformation: {
+					givenName: this.givenName,
+					familyName: this.familyName,
+				}
 			}
 			try {
 				await this.registerUser(params)

@@ -1,12 +1,10 @@
 import client from '@/client'
 
 export default {
-  async register({
-    identifier, plainTextPassword, firstName, lastName
-  }) {
-    return (await client.post('/user/create', {
-      identifier, plainTextPassword, firstName, lastName
-    })).data
+  async register({ emailAddress, password, userInformation }) {
+		const registerParams = { emailAddress, password, userInformation }
+		const { data } = await client.post('/user/register', registerParams)
+		return data
   },
   async login({ emailAddress, password }) {
 		const { data } = await client.post('/user/login', { emailAddress, password })
@@ -14,10 +12,6 @@ export default {
 	},
 	async googleOauthRegister(codeToSend){
 		const { data } = await client.post('/register/oauth/google', { idToken: codeToSend })
-		return data
-	},
-	async standardRegister(userPayload){
-		const { data } = await client.post('/register', userPayload)
 		return data
 	},
 	async googleOauthLogin(codeToSend){

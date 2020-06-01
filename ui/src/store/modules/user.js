@@ -28,8 +28,8 @@ export default {
 		}
 	},
 	actions: {
-		async registerUser({ commit, dispatch }, userPayload){
-			const { userInformation, token } = await service.standardRegister(userPayload)
+		async registerUser({ commit, dispatch }, payload){
+			const { userInformation, token } = await service.register(payload)
 			dispatch('session/beginNewSession', token, { root: true })
 			commit('UPDATE_USER', userInformation)
 		},
