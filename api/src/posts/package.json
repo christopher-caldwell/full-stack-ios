@@ -9,10 +9,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "devDependencies": {
+    "typescript": "^3.9.3"
+  },
   "dependencies": {
     "common-aws-actions": "^0.0.2"
-  },
-  "devDependencies": {
-    "aws-sdk": "^2.687.0"
   }
 }

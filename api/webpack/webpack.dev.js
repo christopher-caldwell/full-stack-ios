@@ -5,7 +5,7 @@ const common = require('./webpack.common.js')
 
 module.exports = merge(common, {
   mode: 'development',
-  devtool: 'source-map',
+  devtool: 'source-map-support',
   plugins: [
     // uncomment to see your bundle analysis
     // new BundleAnalyzerPlugin()

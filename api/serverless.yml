@@ -45,6 +45,7 @@ custom:
   webpack:
     webpackConfig: 'webpack/webpack.${env:WEBPACK_CONFIG}.js'
     packager: 'yarn'
+    includeModules: true
 
 package:
   individually: true

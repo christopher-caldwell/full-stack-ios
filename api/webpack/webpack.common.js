@@ -1,11 +1,31 @@
-const serverlessWebpack = require('serverless-webpack')
+const path = require('path');
+const slsw = require('serverless-webpack');
 
 module.exports = {
-  entry: serverlessWebpack.lib.entries,
+	stats: 'minimal',
+  context: path.resolve(process.cwd()),
+  entry: slsw.lib.entries,
   resolve: {
-    modules: [ 'node_modules' ],
-    extensions: [ '.wasm', '.ts', '.tsx', '.mjs', '.cjs', '.js', '.json' ]
+    extensions: [
+      '.js',
+      '.json',
+      '.ts'
+    ]
   },
-  stats: 'minimal',
+  output: {
+    libraryTarget: 'commonjs',
+    path: path.join(process.cwd(), '.webpack'),
+    filename: '[name].js'
+  },
   target: 'node',
+  module: {
+    rules: [
+      {
+        test: /\.ts(x?)$/,
+        loader: 'ts-loader',
+        options: {
+        }
+      }
+    ]
+  }
 }
