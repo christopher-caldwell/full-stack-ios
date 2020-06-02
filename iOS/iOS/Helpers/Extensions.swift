@@ -1,9 +1,15 @@
-//
-//  Extensions.swift
-//  iOS
-//
-//  Created by Chris Caldwell on 6/1/20.
-//  Copyright © 2020 Chris Caldwell. All rights reserved.
-//
+import UIKit
 
-import Foundation
+
+extension UIView {
+    func addFormatConstraints(formatString: String, views: UIView...){
+        var viewDictionary = [String: UIView]()
+        for (index, view) in views.enumerated(){
+            let key = "v\(index)"
+            // allows for auto layout
+            view.translatesAutoresizingMaskIntoConstraints = false
+            viewDictionary[key] = view
+        }
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: formatString, options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: viewDictionary))
+    }
+}

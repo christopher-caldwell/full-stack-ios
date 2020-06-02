@@ -1,9 +1,15 @@
 //
 //  BaseController.swift
-//  iOS
+//  http-requests
 //
-//  Created by Chris Caldwell on 6/1/20.
+//  Created by Chris Caldwell on 2/7/20.
 //  Copyright © 2020 Chris Caldwell. All rights reserved.
 //
+import UIKit
+import ColorCompatibility
 
-import Foundation
+class BaseController: UIViewController {
+    override func viewDidLoad() {
+        view.backgroundColor = ColorCompatibility.systemBackground
+    }
+}
