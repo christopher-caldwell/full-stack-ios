@@ -70,6 +70,16 @@ functions:
           path: user/register
           method: post
 
+  Posts:
+    handler: src/posts/index.handler
+    name: Posts-${env:STAGE}
+    description: Return posts for a user
+    role: LoginUserRole
+    events:
+      - http:
+          path: posts
+          method: get
+
 
 # you can add CloudFormation resource templates here
 resources:
