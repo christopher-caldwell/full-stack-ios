@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@types/bcryptjs@^2.4.2":
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/@types/bcryptjs/-/bcryptjs-2.4.2.tgz#e3530eac9dd136bfdfb0e43df2c4c5ce1f77dfae"
+  integrity sha512-LiMQ6EOPob/4yUL66SZzu6Yh77cbzJFYll+ZfaPiPPFswtIlA/Fs1MzdKYA7JApHU49zQTbJGX3PDmCpIdDBRQ==
+
 async@^2.6.1:
   version "2.6.3"
   resolved "https://registry.yarnpkg.com/async/-/async-2.6.3.tgz#d72625e2344a3656e3a3ad4fa749fa83299d82ff"
@@ -99,10 +104,10 @@ colorspace@1.1.x:
     color "3.0.x"
     text-hex "1.0.x"
 
-common-aws-actions@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/common-aws-actions/-/common-aws-actions-0.0.2.tgz#6d4ad841d9badedbc0fe9b8cd04337a8970fa7fc"
-  integrity sha512-APrhBR45YsqcR3Du5hqzNPvM3yAD21ok2qTJYdc4fuelypa8Ka2+B1tkdrR0qNO8C8aWMB1Ai7VieH8JgVh1yw==
+common-aws-actions@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/common-aws-actions/-/common-aws-actions-0.0.5.tgz#bb9e35544ec585decfdb5ea6ae4e8ce8fdf00570"
+  integrity sha512-9gicPgaM0dJdrTAks8malHvuFWfCZAiA/7fxerlNohEUIa/bDhBLWUeeIDG9zdETm/w/s70o2kIkhNn9SiDCnA==
   dependencies:
     winston "^3.2.1"
 
