@@ -6,6 +6,8 @@ PODS:
   - SDWebImage (5.8.0):
     - SDWebImage/Core (= 5.8.0)
   - SDWebImage/Core (5.8.0)
+  - SwiftKeychainWrapper (3.4.0)
+  - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -13,6 +15,8 @@ DEPENDENCIES:
   - JGProgressHUD
   - LBTATools
   - SDWebImage
+  - SwiftKeychainWrapper
+  - SwiftyJSON
 
 SPEC REPOS:
   trunk:
@@ -21,6 +25,8 @@ SPEC REPOS:
     - JGProgressHUD
     - LBTATools
     - SDWebImage
+    - SwiftKeychainWrapper
+    - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
@@ -28,7 +34,9 @@ SPEC CHECKSUMS:
   JGProgressHUD: aa403e9a5b45cae98903c4600cccdd98c0c3ec90
   LBTATools: 389a901a01b9a56bea5682c40cd6e23530f40015
   SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
+  SwiftKeychainWrapper: 6fc49fbf7d4a6b0772917acb0e53a1639f6078d6
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: b7c4615a2362a5511b5a3769698625432d401bb4
+PODFILE CHECKSUM: 410aabc385068e050efd4363db7437ef98efa5b7
 
 COCOAPODS: 1.9.3

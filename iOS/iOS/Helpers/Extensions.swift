@@ -13,3 +13,11 @@ extension UIView {
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: formatString, options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: viewDictionary))
     }
 }
+
+extension Optional where Wrapped == String {
+
+    var isNilOrEmpty: Bool {
+        return self?.isEmpty ?? true
+    }
+
+}

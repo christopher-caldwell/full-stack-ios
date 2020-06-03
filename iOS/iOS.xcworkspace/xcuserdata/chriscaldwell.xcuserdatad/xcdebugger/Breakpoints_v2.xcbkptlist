@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "4420D1E4-0EE5-4532-9DA0-42FD90868D38"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F89E00E7-F605-48E0-8EAB-F3E109BB0C16"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iOS/Controllers/LoginController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "handleLogin()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F89E00E7-F605-48E0-8EAB-F3E109BB0C16 - eafa85feb0e71bc8"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "iOS.LoginController.(handleLogin in _BB63FEAFEB91B85E0CC69599A2DA8AD7)() -&gt; ()"
+                  moduleName = "iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chriscaldwell/Code/tutorials/full-stack-ios/iOS/iOS/Controllers/LoginController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "1593">
+               </Location>
+               <Location
+                  uuid = "F89E00E7-F605-48E0-8EAB-F3E109BB0C16 - 117de5b5f983ece8"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any, Alamofire.AFError&gt;) -&gt; () in iOS.LoginController.(handleLogin in _BB63FEAFEB91B85E0CC69599A2DA8AD7)() -&gt; ()"
+                  moduleName = "iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chriscaldwell/Code/tutorials/full-stack-ios/iOS/iOS/Controllers/LoginController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "386">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

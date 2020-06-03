@@ -8,6 +8,9 @@
 import UIKit
 import WebKit
 import LBTATools
+import SwiftKeychainWrapper
+import Alamofire
+import SwiftyJSON
 
 class HomeController: BaseController {
 
@@ -25,8 +28,32 @@ class HomeController: BaseController {
     }
     
     @objc fileprivate func fetchPosts(){
+        let retrievedToken: String? = KeychainWrapper.standard.string(forKey: "token")
+        if retrievedToken != nil {
+            let headers: HTTPHeaders = [ "Authorization": retrievedToken! ]
+            AF.request("http://localhost:5000/local/posts", method: .get, headers: headers ).responseJSON { response in
+                switch response.result {
+                    case .success:
+                        if let json = response.data {
+                            do{
+                                let data = try JSON(data: json)
+                                let posts = data["posts"]
+                                print("posts", posts)
+                            }
+                            catch{
+                            print("JSON Error")
+                            }
+
+                        }
+                        self.dismiss(animated: true)
+                    case .failure(let error):
+                        debugPrint(error)
+                }
+            }
+        }
+        
         print("Button tapped")
-        guard let url = URL(string: "http://localhost:5000/local/posts") else { return }
+        guard let url = URL(string: "") else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             DispatchQueue.main.async {
                 if let error = error {

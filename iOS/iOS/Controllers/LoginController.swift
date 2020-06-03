@@ -10,6 +10,8 @@ import LBTATools
 import Alamofire
 import JGProgressHUD
 import ColorCompatibility
+import SwiftyJSON
+import SwiftKeychainWrapper
 
 let fieldRadius = CGFloat(10)
 
@@ -41,22 +43,65 @@ class LoginController: LBTAFormController {
         guard let emailAddress = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         
-        errorLabel.isHidden = true
-        let loginParameters = Login(emailAddress: emailAddress, password: password)
+        sendLoginRequest(emailAddress: emailAddress, password: password)
         
-        AF.request("http://localhost:5000/local/user/login", method: .post, parameters: loginParameters, encoder: JSONParameterEncoder.default).responseJSON { response in
-            hud.dismiss()
-            debugPrint(response.result)
-            self.dismiss(animated: true)
-        }
+        errorLabel.isHidden = true
+        
+        hud.dismiss()
+        
     }
     
     @objc fileprivate func goToRegister(){
         print("Register")
     }
     
+    fileprivate func sendLoginRequest(emailAddress: String, password: String) {
+        let loginParameters = Login(emailAddress: emailAddress, password: password)
+        AF.request("http://localhost:5000/local/user/login", method: .post, parameters: loginParameters, encoder: JSONParameterEncoder.default).responseJSON { response in
+            switch response.result {
+                case .success:
+                    if let json = response.data {
+                        do{
+                            let data = try JSON(data: json)
+                            let token = data["token"].string
+                            let wasTokenSaved: Bool = KeychainWrapper.standard.set(token ?? "oops", forKey: "token")
+                            let wasPasswordSaved: Bool = KeychainWrapper.standard.set(password, forKey: "password")
+                            let wasEmailAddressSaved: Bool = KeychainWrapper.standard.set(emailAddress, forKey: "emailAddress")
+                            if wasTokenSaved && wasPasswordSaved && wasEmailAddressSaved {
+                                print("saved all")
+                                let retrievedString: String? = KeychainWrapper.standard.string(forKey: "token")
+                                print(retrievedString ?? "oops")
+                            }
+                        }
+                        catch{
+                        print("JSON Error")
+                        }
+
+                    }
+                    self.dismiss(animated: true)
+                case .failure(let error):
+                    debugPrint(error)
+            }
+            
+            
+            
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        let previousToken: String? = KeychainWrapper.standard.string(forKey: "token")
+        let previousEmail: String? = KeychainWrapper.standard.string(forKey: "emailAddress")
+        let previousPassword: String? = KeychainWrapper.standard.string(forKey: "password")
+        
+        if previousToken != nil && previousEmail != nil && previousPassword != nil {
+            sendLoginRequest(emailAddress: previousEmail!, password: previousPassword!)
+        }
+        
+        print("token", previousToken ?? "no token")
+        print("password", previousPassword ?? "no password")
+        print("email", previousEmail ?? "no email")
+        
         view.backgroundColor = ColorCompatibility.systemBackground
         
         emailTextField.autocapitalizationType = .none

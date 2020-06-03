@@ -9,5 +9,7 @@ target 'iOS' do
   pod 'LBTATools'
   pod 'SDWebImage'
   pod 'JGProgressHUD'
+	pod 'SwiftyJSON'
+	pod 'SwiftKeychainWrapper'
 
 end
