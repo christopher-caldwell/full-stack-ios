@@ -26,5 +26,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {
+    "common-aws-actions": "^0.0.9"
+  }
 }

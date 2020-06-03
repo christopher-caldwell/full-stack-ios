@@ -2005,6 +2005,13 @@ commander@~2.8.1:
   dependencies:
     graceful-readlink ">= 1.0.0"
 
+common-aws-actions@^0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/common-aws-actions/-/common-aws-actions-0.0.9.tgz#8e5e7e62e49bf670496dfbbb1b671b8d3b8faff3"
+  integrity sha512-spI0MX+TjYw/TJIgd5svfX8R2YdEj5gWUGUMpmbppyb4HYfBU/jDq3yuLkusBoI47BbaAyONTBYdKYmfxeIuuA==
+  dependencies:
+    winston "^3.2.1"
+
 commondir@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/commondir/-/commondir-1.0.1.tgz#ddd800da0c66127393cca5950ea968a3aaf1253b"

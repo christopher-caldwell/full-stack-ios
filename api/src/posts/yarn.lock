@@ -94,10 +94,10 @@ colorspace@1.1.x:
     color "3.0.x"
     text-hex "1.0.x"
 
-common-aws-actions@^0.0.6:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/common-aws-actions/-/common-aws-actions-0.0.6.tgz#4da09bc3959045a13c7fb868dfb7b5661549af9b"
-  integrity sha512-btdLjeayGoXGuXfE9nPIgt5daJMFBjRfFx0jD4Dj9d/p5OnHt2Ha4NHtLe33E1rgRP9imo73xCBMQWjb8irQdg==
+common-aws-actions@^0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/common-aws-actions/-/common-aws-actions-0.0.9.tgz#8e5e7e62e49bf670496dfbbb1b671b8d3b8faff3"
+  integrity sha512-spI0MX+TjYw/TJIgd5svfX8R2YdEj5gWUGUMpmbppyb4HYfBU/jDq3yuLkusBoI47BbaAyONTBYdKYmfxeIuuA==
   dependencies:
     winston "^3.2.1"
 

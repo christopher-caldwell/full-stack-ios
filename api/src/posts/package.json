@@ -15,6 +15,6 @@
     "typescript": "^3.9.3"
   },
   "dependencies": {
-    "common-aws-actions": "^0.0.6"
+    "common-aws-actions": "^0.0.9"
   }
 }
