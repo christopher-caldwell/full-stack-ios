@@ -57,21 +57,17 @@ class LoginController: LBTAFormController {
     
     fileprivate func sendLoginRequest(emailAddress: String, password: String) {
         let loginParameters = Login(emailAddress: emailAddress, password: password)
-        AF.request("http://localhost:5000/local/user/login", method: .post, parameters: loginParameters, encoder: JSONParameterEncoder.default).responseJSON { response in
-            switch response.result {
+        AF.request("http://localhost:5000/local/user/login", method: .post, parameters: loginParameters, encoder: JSONParameterEncoder.default)
+            .responseJSON { response in
+                switch response.result {
                 case .success:
                     if let json = response.data {
                         do{
                             let data = try JSON(data: json)
                             let token = data["token"].string
-                            let wasTokenSaved: Bool = KeychainWrapper.standard.set(token ?? "oops", forKey: "token")
-                            let wasPasswordSaved: Bool = KeychainWrapper.standard.set(password, forKey: "password")
-                            let wasEmailAddressSaved: Bool = KeychainWrapper.standard.set(emailAddress, forKey: "emailAddress")
-                            if wasTokenSaved && wasPasswordSaved && wasEmailAddressSaved {
-                                print("saved all")
-                                let retrievedString: String? = KeychainWrapper.standard.string(forKey: "token")
-                                print(retrievedString ?? "oops")
-                            }
+                            KeychainWrapper.standard.set(token ?? "oops", forKey: "token")
+                            KeychainWrapper.standard.set(password, forKey: "password")
+                            KeychainWrapper.standard.set(emailAddress, forKey: "emailAddress")
                         }
                         catch{
                         print("JSON Error")

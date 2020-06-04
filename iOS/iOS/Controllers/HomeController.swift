@@ -29,9 +29,18 @@ class HomeController: BaseController {
     
     @objc fileprivate func fetchPosts(){
         let retrievedToken: String? = KeychainWrapper.standard.string(forKey: "token")
-        if retrievedToken != nil {
+        let emailAddress: String? = KeychainWrapper.standard.string(forKey: "emailAddress")
+        if retrievedToken != nil && emailAddress != nil {
+            let parameters = [ "emailAddress": emailAddress! ]
             let headers: HTTPHeaders = [ "Authorization": retrievedToken! ]
-            AF.request("http://localhost:5000/local/posts", method: .get, headers: headers ).responseJSON { response in
+            AF.request("http://localhost:5000/local/posts",
+               method: .get,
+               parameters: parameters,
+               encoding: URLEncoding(destination: .queryString),
+               headers: headers
+            )
+            .validate(statusCode: 200..<201)
+            .responseJSON { response in
                 switch response.result {
                     case .success:
                         if let json = response.data {

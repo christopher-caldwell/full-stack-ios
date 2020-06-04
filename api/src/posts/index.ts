@@ -15,6 +15,6 @@ const posts = {
 }
 
 export const handler = async (event: Record<string, unknown>): Promise<ResponseBody> => {
-	logger.info('event', event)
+	logger.info('event', event.queryStringParameters)
 	return ResponseHandler.respond(posts, 200)
 }
