@@ -11,10 +11,12 @@
   "license": "ISC",
   "devDependencies": {
     "@types/aws-lambda": "^8.10.52",
+    "@types/uuid": "^8.0.0",
     "aws-sdk": "^2.688.0",
     "typescript": "^3.9.3"
   },
   "dependencies": {
-    "common-aws-actions": "^0.0.9"
+    "common-aws-actions": "^0.0.9",
+    "uuid": "^8.1.0"
   }
 }

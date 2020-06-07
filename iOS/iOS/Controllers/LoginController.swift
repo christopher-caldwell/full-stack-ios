@@ -76,7 +76,10 @@ class LoginController: LBTAFormController {
                     }
                     self.dismiss(animated: true)
                 case .failure(let error):
+									self.errorLabel.isHidden = false
+									self.errorLabel.text = "The combination given did not match our records. Please try again."
                     debugPrint(error)
+									return
             }
             
             

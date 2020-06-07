@@ -1,15 +1,17 @@
 import Responder from 'common-aws-actions/dist/util/Responder'
 import logger from 'common-aws-actions/dist/util/logger'
 import { ResponseBody } from 'common-aws-actions/dist/shared/interfaces'
+import { v4 } from 'uuid'
 
 const ResponseHandler = new Responder({ corsUrl: '*', httpMethod: 'post' })
 
 const posts = {
 	posts: [
 		{
-			id: 1,
-			author: 'Timmy',
-			content: 'Hey!'
+			id: v4(),
+			identifier: 'test@tes.com',
+			content: 'Hey!',
+			createdAt: Date.now()
 		}
 	]
 }
